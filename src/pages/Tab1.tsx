@@ -40,7 +40,7 @@ const Tab1: React.FC = () => {
 
 
    
-<IonButton id="open-action-sheet">Open action sheet</IonButton>
+<IonButton id="open-action-sheet"expand="full">Open action sheet</IonButton>
 <IonActionSheet
         trigger="open-action-sheet"
         header="Actions"
