@@ -28,33 +28,7 @@ const Tab2: React.FC = () => {
         <p>Click count: {clickCount}</p> <b></b>
         
         <IonButton onClick={handleClick} expand="block">Click me</IonButton>
-        <IonButton id="open-action-sheet" expand="block">Reset</IonButton>
-      <IonActionSheet
-        trigger="open-action-sheet"
-        header="Actions"
-        buttons={[
-          {
-            text: 'Delete',
-            role: 'destructive',
-            data: {
-              action: 'delete',
-            },
-          },
-          {
-            text: 'Share',
-            data: {
-              action: 'share',
-            },
-          },
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            data: {
-              action: 'cancel',
-            },
-          },
-        ]}
-      ></IonActionSheet>
+        
 
       </IonContent>
     </IonPage>
