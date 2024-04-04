@@ -10,6 +10,10 @@ const Tab2: React.FC = () => {
     setClickCount(clickCount + 1);
   };
 
+  const handleReset = () => {
+    setClickCount(0); // Reset the click count to 0
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -24,11 +28,10 @@ const Tab2: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         
-        
         <p>Click count: {clickCount}</p> <b></b>
         
         <IonButton onClick={handleClick} expand="block">Click me</IonButton>
-        
+        <IonButton onClick={handleReset} expand="block">Reset</IonButton> {/* Add reset button */}
 
       </IonContent>
     </IonPage>
