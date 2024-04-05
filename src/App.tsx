@@ -15,7 +15,7 @@ import { calculatorOutline, ellipse, homeOutline, personOutline, speedometerOutl
 // Home resources
 import Home from './pages/home';
 
-import Tab1 from './pages/Profile';
+import Profile from './pages/Profile';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
@@ -56,8 +56,8 @@ const App: React.FC = () => (
           <Route exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/Profile">
+            <Profile />
           </Route>
           <Route exact path="/tab2">
             <Tab2 />
@@ -81,7 +81,7 @@ const App: React.FC = () => (
 
 
 
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="Profile" href="/Profile">
             <IonIcon aria-hidden="true" icon={personOutline} />
             <IonLabel>Profile</IonLabel>
           </IonTabButton>
