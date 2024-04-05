@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
-import './Tab3.css';
+import './calculator.css';
 
-const Tab3: React.FC = () => {
+const calculator: React.FC = () => {
   const [input, setInput] = useState(''); // State to store user input
   const [result, setResult] = useState(''); // State to store calculation result
 
@@ -78,4 +78,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default calculator;
