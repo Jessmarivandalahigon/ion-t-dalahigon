@@ -17,7 +17,7 @@ import Home from './pages/home';
 
 import Profile from './pages/Profile';
 import Clickcounter from './pages/Clickcounter';
-import Tab3 from './pages/Calculator';
+import calculator from './pages/Calculator';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -62,8 +62,8 @@ const App: React.FC = () => (
           <Route exact path="/Clickcounter">
             <Clickcounter />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/calculator">
+            <calculator />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
@@ -89,7 +89,7 @@ const App: React.FC = () => (
             <IonIcon aria-hidden="true" icon={speedometerOutline} />
             <IonLabel>Click counter</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="calculator" href="/calculator">
             <IonIcon aria-hidden="true" icon={calculatorOutline} />
             <IonLabel>Calculator</IonLabel>
           </IonTabButton>
