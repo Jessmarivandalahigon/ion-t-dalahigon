@@ -15,7 +15,7 @@ import { calculatorOutline, ellipse, homeOutline, personOutline, speedometerOutl
 // Home resources
 import Home from './pages/home';
 
-import Tab1 from './pages/Tab1';
+import Tab1 from './pages/Profile';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
