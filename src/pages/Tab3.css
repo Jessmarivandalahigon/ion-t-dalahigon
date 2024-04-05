@@ -1,0 +1,32 @@
+/* Tab3.css */
+.calc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .calc-input {
+    font-size: 24px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #6990d8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    text-align: right;
+  }
+  
+  .calc-result {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Customizing IonButton */
+  ion-button {
+    width: 25%;
+    height: 50px;
+    font-size: 20px;
+  }
+  
