@@ -63,7 +63,7 @@ const App: React.FC = () => (
             <Clickcounter />
           </Route>
           <Route path="/calculator">
-            <calculator />
+            <calculator/>
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
