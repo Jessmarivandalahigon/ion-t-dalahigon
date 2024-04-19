@@ -1,8 +1,10 @@
 import React from 'react';
 import {
-    IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton
+    IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton,
+    IonIcon
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import { calculatorOutline } from 'ionicons/icons';
 
 const Home: React.FC = () => {
     const history = useHistory();
@@ -32,8 +34,10 @@ const Home: React.FC = () => {
                     </IonCardHeader>
 
                     <IonCardContent>
-                        This is the home page content.
-                        <IonButton expand="block" onClick={goToCalculator}>Go to Calculator</IonButton>
+                        <IonButton expand="block" routerLink='/calculator'>
+                            <IonIcon icon={calculatorOutline} slot="start" />
+                            Calculator
+                        </IonButton>
                     </IonCardContent>
                 </IonCard>
 
