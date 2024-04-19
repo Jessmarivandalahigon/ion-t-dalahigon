@@ -49,7 +49,7 @@ const Home: React.FC = () => {
                     <IonCardContent>
                         <IonButton expand="block" routerLink='/todolist'>
                             <IonIcon icon={clipboardOutline} slot="start" />
-                            Clickcounter
+                            todolist
                         </IonButton>
                     </IonCardContent>
                     
