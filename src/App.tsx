@@ -37,6 +37,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import TodoList from './pages/todolist';
 
 setupIonicReact();
 
@@ -62,9 +63,17 @@ const App: React.FC = () => (
           <Route exact path="/Clickcounter">
             <Clickcounter />
           </Route>
-          <Route path="/calculator">
-            <calculator/>
+          <Route path="/Calculator">
+            <calculator />
           </Route>
+
+          
+          <Route exact path="/todolist">
+            <TodoList />
+          </Route>
+
+
+          
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
