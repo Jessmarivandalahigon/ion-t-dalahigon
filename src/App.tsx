@@ -85,14 +85,7 @@ const App: React.FC = () => (
             <IonIcon aria-hidden="true" icon={personOutline} />
             <IonLabel>Profile</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Clickcounter" href="/Clickcounter">
-            <IonIcon aria-hidden="true" icon={speedometerOutline} />
-            <IonLabel>Click counter</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="calculator" href="/calculator">
-            <IonIcon aria-hidden="true" icon={calculatorOutline} />
-            <IonLabel>Calculator</IonLabel>
-          </IonTabButton>
+         
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
