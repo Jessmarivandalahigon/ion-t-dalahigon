@@ -4,7 +4,7 @@ import {
     IonIcon
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import { alarmOutline, calculatorOutline } from 'ionicons/icons';
+import { alarmOutline, calculatorOutline, clipboardOutline } from 'ionicons/icons';
 
 const Home: React.FC = () => {
     const history = useHistory();
@@ -46,7 +46,13 @@ const Home: React.FC = () => {
                     
 
                     
-
+                    <IonCardContent>
+                        <IonButton expand="block" routerLink='/todolist'>
+                            <IonIcon icon={clipboardOutline} slot="start" />
+                            Clickcounter
+                        </IonButton>
+                    </IonCardContent>
+                    
 
 
                 </IonCard>
