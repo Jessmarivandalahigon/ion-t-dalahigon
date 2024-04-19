@@ -29,10 +29,7 @@ const Home: React.FC = () => {
 
                 {/* Add IonCard */}
                 <IonCard>
-                    <IonCardHeader>
-                        <IonCardTitle>calculator</IonCardTitle>
-                    </IonCardHeader>
-
+                    
                     <IonCardContent>
                         <IonButton expand="block" routerLink='/calculator'>
                             <IonIcon icon={calculatorOutline} slot="start" />
