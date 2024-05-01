@@ -73,6 +73,9 @@ const App: React.FC = () => (
           </Route>
 
 
+          <Route path="/quotegenerator">
+            <QuoteGenerator />
+          </Route>
 
 
 
