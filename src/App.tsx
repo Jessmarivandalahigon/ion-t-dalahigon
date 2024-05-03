@@ -10,15 +10,15 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { calculatorOutline, ellipse, exitOutline, homeOutline, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
+import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
 
-// Home resources
 import Home from './pages/home';
-
 import Profile from './pages/Profile';
-import Clickcounter from './pages/Clickcounter';
-import calculator from './pages/Calculator';
-import QuoteGenerator from './pages/qoutesgenerator';
+import ClickCounter from './pages/Clickcounter'; 
+import Calculator from './pages/Calculator';
+import Todolist from './pages/todolist';
+import QuoteGenerator from './pages/quotesgenerator';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,7 +38,6 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import TodoList from './pages/todolist';
 
 setupIonicReact();
 
@@ -46,70 +45,54 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-
         <IonRouterOutlet>
-
-            {/* Application default route */}
-            <Route exact path="/">
+          
+          {/* Application default route */}
+           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
 
-          {/* Home Router */}
           <Route exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/Profile">
+
+          <Route exact path="/profile">
             <Profile />
           </Route>
-          <Route exact path="/Clickcounter">
-            <Clickcounter />
+          <Route exact path="/clickcounter">
+            <ClickCounter />
           </Route>
-          <Route path="/Calculator">
-            <calculator />
-          </Route>
-
-          
-          <Route exact path="/todolist">
-            <TodoList />
+          <Route path="/calculator">
+            <Calculator />
           </Route>
 
+          <Route path="/todolist">
+            <Todolist />
+          </Route>
 
           <Route path="/quotegenerator">
-            <quoteGenerator />
+            <QuoteGenerator />
           </Route>
 
-
-
-
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-
-
-
-
-
+         
 
         </IonRouterOutlet>
-        
+
+      {/* Tab Buttons */}
         <IonTabBar slot="bottom">
-          {/* Home Tab Button */}
+
           <IonTabButton tab="home" href="/home">
-            <IonIcon aria-hidden="true" icon={homeOutline} />
+            <IonIcon aria-hidden="true" icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-
-          <IonTabButton tab="home" href="/home">
-            <IonIcon aria-hidden="true" icon={exitOutline} />
-            <IonLabel>close</IonLabel>
-          </IonTabButton>
-
-          <IonTabButton tab="Profile" href="/Profile">
+       
+          <IonTabButton tab="profile" href="/profile">
             <IonIcon aria-hidden="true" icon={personOutline} />
             <IonLabel>Profile</IonLabel>
           </IonTabButton>
-         
+      
         </IonTabBar>
+
       </IonTabs>
     </IonReactRouter>
   </IonApp>
