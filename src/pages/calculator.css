@@ -1,0 +1,16 @@
+.calc-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.calc-input {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.calc-result {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Add more styles as needed */
