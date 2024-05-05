@@ -77,8 +77,6 @@ const cardData = [
 ];
 
 const Home: React.FC = () => {
-  {/*Dynamic Search*/}
-  const [searchTerm, setSearchTerm] = useState<string>('');
   
     return (
       <IonPage>
@@ -94,14 +92,8 @@ const Home: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           
-          {/*Dynamic Search*/}
-          <IonSearchbar 
-            value={searchTerm} 
-            onIonInput={(e) => setSearchTerm(e.target.value ?? '')} 
-          />
-          
           {cardData
-            .filter((card) => card.title.toLowerCase().includes(searchTerm.toLowerCase()))
+            
             .map((card, index) => (
               <IonCard key={index} href={card.link}>
                 <IonCardHeader>

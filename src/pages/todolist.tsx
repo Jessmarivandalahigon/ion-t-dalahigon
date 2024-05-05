@@ -11,6 +11,8 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonButtons,
+  IonBackButton
 } from '@ionic/react';
 
 const TodoList: React.FC = () => {
@@ -34,6 +36,9 @@ const TodoList: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/" />
+          </IonButtons>
           <IonTitle>To-Do List</IonTitle>
         </IonToolbar>
       </IonHeader>

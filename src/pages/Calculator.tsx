@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
-import './calculator.css';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonButtons, IonBackButton } from '@ionic/react';
+import './Calculator.css';
 
 const calculator: React.FC = () => {
   const [input, setInput] = useState(''); // State to store user input
@@ -29,6 +29,9 @@ const calculator: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/" />
+          </IonButtons>
           <IonTitle>Calculator</IonTitle>
         </IonToolbar>
       </IonHeader>

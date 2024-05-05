@@ -68,6 +68,9 @@ const QuoteGenerator: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/" />
+          </IonButtons>
           <IonTitle>Quote Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -87,7 +90,7 @@ const QuoteGenerator: React.FC = () => {
                 <IonAlert
                   isOpen={showAlert}
                   onDidDismiss={handleAlertDismiss} // Call the handleAlertDismiss function when the alert is closed
-                  header="Rizz"
+                  header="Jessmar"
                   subHeader=""
                   message={renderRandomMessage()}
                   buttons={['Close']}

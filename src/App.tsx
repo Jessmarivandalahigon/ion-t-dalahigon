@@ -12,12 +12,12 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
 
-import Home from './pages/home';
+import Home from './pages/Home';
 import Profile from './pages/Profile';
-import ClickCounter from './pages/Clickcounter'; 
+import ClickCounter from './pages/ClickCounter'; 
 import Calculator from './pages/Calculator';
-import Todolist from './pages/todolist';
-import QuoteGenerator from './pages/quotesgenerator';
+import Todolist from './pages/Todolist';
+import QuotesGenerator from './pages/QuotesGenerator';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -71,7 +71,7 @@ const App: React.FC = () => (
           </Route>
 
           <Route path="/quotegenerator">
-            <QuoteGenerator />
+            <QuotesGenerator />
           </Route>
 
          
