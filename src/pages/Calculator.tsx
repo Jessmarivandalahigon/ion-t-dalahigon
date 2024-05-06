@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonButtons, IonBackButton } from '@ionic/react';
-import './Calculator.css';
+import './calculator.css';
 
 const calculator: React.FC = () => {
   const [input, setInput] = useState(''); // State to store user input
