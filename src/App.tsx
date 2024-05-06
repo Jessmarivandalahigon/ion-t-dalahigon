@@ -12,12 +12,12 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { calculatorOutline, ellipse, home, personOutline, speedometerOutline, square, triangle } from 'ionicons/icons';
 
-import Home from './pages/Home';
+import Home from './pages/home';
 import Profile from './pages/Profile';
-import ClickCounter from './pages/ClickCounter'; 
+import ClickCounter from './pages/Clickcounter'; 
 import Calculator from './pages/Calculator';
-import Todolist from './pages/Todolist';
-import QuotesGenerator from './pages/QuotesGenerator';
+import Todolist from './pages/todolist';
+import QuotesGenerator from './pages/quotesgenerator';
 import Notes from './pages/Notes/Notes';
 
 
