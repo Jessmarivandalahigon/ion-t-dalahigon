@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   IonBackButton,
   IonButton,
@@ -22,85 +22,215 @@ import {
   IonTitle,
   IonToolbar,
   IonItemDivider,
-  IonSearchbar,
-  IonAlert,
-  IonActionSheet,
-  IonAvatar,
-  IonThumbnail
+  IonTextarea,
+  useIonToast
 } from '@ionic/react';
+//Ionicons
+import { trashOutline, pencilOutline } from 'ionicons/icons';
 
-//Dynamic data reference
-import rizzCard from '../json/rizzcard.json';
 
-const QuoteGenerator: React.FC = () => {
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [randomIndex, setRandomIndex] =  useState<number | null>(null); // State to store random index
+// Firebase
+import { collection, addDoc, onSnapshot,updateDoc,doc, deleteDoc} from 'firebase/firestore';
+import { db } from './Firebase';
 
-  // Function to generate a random index
-  const generateRandomIndex = () => {
-    return Math.floor(Math.random() * rizzCard.length);
-  };
+const Notes: React.FC = () => {
+  const [notes, readNotes] = useState<{ id: string; title: string; description: string;dateAdded: string; }[]>([]);
+  const [newTitle, setNewTitle] = useState<string>('');
+  const [newDescription, setNewDescription] = useState<string>('');
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+  const inputRefTitle = useRef<HTMLIonInputElement>(null);
+  const inputRefDescription = useRef<HTMLIonTextareaElement>(null);
+  const [present] = useIonToast();
 
-  // Function to generate a random message
-  const renderRandomMessage = () => {
-    if (randomIndex !== null) {
-      return rizzCard[randomIndex].message;
-    } else {
-      return ''; // Return empty string if randomIndex is null
+  // Clear the input field
+  const clearInput = () => {
+    setNewTitle('');
+    setNewDescription('');
+    if (inputRefTitle.current && inputRefDescription.current) {
+      inputRefTitle.current.setFocus();
     }
   };
 
-  // Function to handle opening of the alert
-  const handleOpenAlert = () => {
-    const newIndex = generateRandomIndex();
-    setRandomIndex(newIndex);
-    setShowAlert(true);
+  // Toast
+  const addNoteToast = (position: 'middle') => {
+    present({
+      message: 'Added new Note',
+      duration: 1500,
+      position: position,
+    });
   };
 
-  // Function to handle closing of the alert
-  const handleAlertDismiss = () => {
-    setRandomIndex(0); // Reset the index to 0
-    setShowAlert(false); // Hide the alert
+  const editNoteToast = (position: 'middle') => {
+    present({
+      message: 'Changes Saved',
+      duration: 1500,
+      position: position,
+    });
   };
-  
+
+  const deleteNoteToast = (position: 'middle') => {
+    present({
+      message: 'Note deleted',
+      duration: 1500,
+      position: position,
+    });
+  };
+
+  //Create Note
+  const addNote = async () => {
+    if (newTitle.trim() !== '') {
+      if (editIndex !== null) {
+        // Update existing note (not implemented in this code snippet)
+      } else {
+        const currentDate = new Date().toISOString(); 
+        addNoteToast('middle');
+        await addDoc(collection(db, 'quotesgenerator'), {
+          title: newTitle,
+          description: newDescription,
+          dateAdded: currentDate
+        });
+        
+      }
+      clearInput();
+    }
+  };
+
+  //Read Firebase Data
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'quotesgenerator'), (snapshot) => {
+      readNotes(snapshot.docs.map(doc => ({
+        id: doc.id, // Include the id property
+        description: doc.data().description,
+        title: doc.data().title,
+        dateAdded: doc.data().dateAdded
+      })));
+    });
+    return () => unsubscribe();
+  }, []);
+
+// Edit Handler
+const editNote = (index: number) => {
+  setEditIndex(index);
+  const editedNote = notes[index];
+  setNewTitle(editedNote.title);
+  setNewDescription(editedNote.description);
+};
+
+// Update Firebase Data
+const updateNote = async () => {
+  if (editIndex !== null) {
+    editNoteToast('middle');
+    const noteToUpdate = notes[editIndex];
+    await updateDoc(doc(db, 'quotesgenerator', noteToUpdate.id), {
+      title: newTitle,
+      description: newDescription,
+    });
+    // Clear the input fields and reset editIndex
+    clearInput();
+    setEditIndex(null);
+  }
+};
+
+//Cancel Edit function
+const cancelEdit = () => {
+  clearInput(); // Clear input fields
+  setEditIndex(null); // Reset editIndex
+};
+
+// Delete Firebase Data
+const deleteNote = async (index: number) => {
+  deleteNoteToast('middle');
+  const noteToDelete = notes[index];
+  // Delete note from Firestore
+  await deleteDoc(doc(db, 'quotesgenerator', noteToDelete.id));
+};
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
-          </IonButtons>
-          <IonTitle>Quote Generator</IonTitle>
+          <IonButton slot="start" fill="clear" href='/'>
+            Back
+          </IonButton>
+          <IonTitle>Quotes Generator</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Quote Generator</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <img alt="Silhouette of mountains" src="https://imgs.search.brave.com/rf5O_8JWOK1_3COmtCAo-6Sg0-4t9TLKLuiOTBRTG3w/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmlt/Z2ZsaXAuY29tLzQv/MTRnOTRzLmpwZw" />
-          {/*Button Trigger*/}
-          <IonGrid>
+      <IonContent className="ion-padding">
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>
+              <IonInput
+                placeholder="Type something here"
+                label="Title"
+                id="custom-input"
+                labelPlacement="floating"
+                counter={true}
+                maxlength={200}
+                counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
+                value={newTitle}
+                onIonInput={(e) => setNewTitle(e.detail.value!)}
+                ref={inputRefTitle}
+              ></IonInput>
+            </IonCardTitle>
+            <IonCardSubtitle>
+              <IonTextarea 
+                placeholder="Type something here"
+                label="Description"
+                id="custom-input"
+                labelPlacement="floating"
+                counter={true}
+                maxlength={200}
+                counterFormatter={(inputLength, maxLength) => `${maxLength - inputLength} / ${maxLength} characters remaining`}
+                value={newDescription}
+                onIonInput={(e) => setNewDescription(e.detail.value!)}
+                ref={inputRefDescription}
+              ></IonTextarea>
+            </IonCardSubtitle>
+          </IonCardHeader>
+          <IonCardContent>
             <IonRow>
-                <IonCol size="" push="">
-                <IonButton id="present-alert" color="warning" expand="full" onClick={handleOpenAlert}>Click me</IonButton> 
-                <IonAlert
-                  isOpen={showAlert}
-                  onDidDismiss={handleAlertDismiss} // Call the handleAlertDismiss function when the alert is closed
-                  header="Jessmar"
-                  subHeader=""
-                  message={renderRandomMessage()}
-                  buttons={['Close']}
-                />
-                </IonCol>
-            </IonRow>
-          </IonGrid>
+              <IonCol>
+                <IonButton expand="block" onClick={editIndex !== null ? updateNote : addNote}>
+                  {editIndex !== null ? 'Update' : 'Add'}
+                </IonButton>
+              </IonCol>
+              <IonCol> 
+                <IonButton expand="block" fill="clear" onClick={editIndex !== null ? cancelEdit : clearInput}>
+                  {editIndex !== null ? 'Cancel' : 'Clear'}
+                </IonButton>
+              </IonCol>
+            </IonRow>      
+          </IonCardContent>
+        </IonCard>
+        {/*Todo list output*/}
+        <br></br>
+        <IonItemDivider color="light">
+          <IonLabel>Notes</IonLabel>
+        </IonItemDivider>
+        <IonList>
+          {notes
+            .slice() // Create a shallow copy of the notes array to avoid mutating the original array
+            .sort((a, b) => new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime()) // Sort the array by dateAdded
+            .map((note, index) => (
+            <IonItem key={index}>
+              <IonLabel>
+                <h2>{note.title}</h2>
+                <p>{note.description}</p>
+                <p>{new Date(note.dateAdded).toLocaleString()}</p>
+              </IonLabel>
+              <IonButton fill="clear" onClick={() => editNote(index)}>
+                <IonIcon icon={pencilOutline} />
+              </IonButton>
+              <IonButton fill="clear" onClick={() => deleteNote(index)}>
+                <IonIcon icon={trashOutline} />
+              </IonButton>
+            </IonItem>
+          ))}
+        </IonList> 
       </IonContent>
     </IonPage>
   );
 };
 
-export default  QuoteGenerator;
+export default Notes;
