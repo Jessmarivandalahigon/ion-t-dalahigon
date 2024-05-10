@@ -34,7 +34,7 @@ const cardData = [
   {
     title: 'Click Counter',
     icon: speedometerOutline,
-    link: '/Clickcounter',
+    link: '/ion-t-dalahigon/Clickcounter',
     tags: {
       tag1: logoIonic,
     }
@@ -43,7 +43,7 @@ const cardData = [
   {
     title: 'Calculator',
     icon: calculator,
-    link: '/Calculator',
+    link: '/ion-t-dalahigon/Calculator',
     tags: {
       tag1: logoIonic,
     }
@@ -51,7 +51,7 @@ const cardData = [
   {
     title: 'To Do List',
     icon: book,
-    link: '/todolist',
+    link: '/ion-t-dalahigon/todolist',
     tags: {
       tag1: logoIonic,
     }
@@ -59,7 +59,7 @@ const cardData = [
   {
     title: 'Quote Generator',
     icon: chatbubble,
-    link: '/quotegenerator',
+    link: '/ion-t-dalahigon/quotegenerator',
     tags: {
       tag1: logoIonic,
     }
@@ -68,7 +68,7 @@ const cardData = [
     title: 'Notes',
     icon: readerOutline,
 
-    link: '/notes',
+    link: '/ion-t-dalahigon/notes',
     tags: {
       tag1: logoIonic,
     }

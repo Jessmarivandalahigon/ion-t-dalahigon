@@ -49,33 +49,33 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           
           {/* Application default route */}
-           <Route exact path="/">
-            <Redirect to="/home" />
+           <Route exact path="/ion-t-dalahigon/">
+            <Redirect to="/ion-t-dalahigon/home" />
           </Route>
 
-          <Route exact path="/home">
+          <Route exact path="/ion-t-dalahigon/home">
             <Home />
           </Route>
 
-          <Route exact path="/profile">
+          <Route exact path="/ion-t-dalahigon/profile">
             <Profile />
           </Route>
-          <Route exact path="/clickcounter">
+          <Route exact path="/ion-t-dalahigon/clickcounter">
             <ClickCounter />
           </Route>
-          <Route path="/calculator">
+          <Route path="/ion-t-dalahigon/calculator">
             <Calculator />
           </Route>
 
-          <Route path="/todolist">
+          <Route path="/ion-t-dalahigon/todolist">
             <Todolist />
           </Route>
 
-          <Route path="/quotegenerator">
+          <Route path="/ion-t-dalahigon/quotegenerator">
             <QuotesGenerator />
           </Route>
           
-          <Route path="/notes">
+          <Route path="/ion-t-dalahigon/notes">
             <Notes />
           </Route>
 
@@ -86,12 +86,12 @@ const App: React.FC = () => (
       {/* Tab Buttons */}
         <IonTabBar slot="bottom">
 
-          <IonTabButton tab="home" href="/home">
+          <IonTabButton tab="home" href="/ion-t-dalahigon/home">
             <IonIcon aria-hidden="true" icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
        
-          <IonTabButton tab="profile" href="/profile">
+          <IonTabButton tab="profile" href="/ion-t-dalahigon/profile">
             <IonIcon aria-hidden="true" icon={personOutline} />
             <IonLabel>Profile</IonLabel>
           </IonTabButton>
